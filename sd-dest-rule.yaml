@@ -1,0 +1,65 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: sd-api-dest
+  namespace: intern
+spec:
+  host: sd-service
+  subsets:
+    - labels:
+        pod: stable-diffusion-api-5xngw
+      name: stable-diffusion-api-5xngw
+    - labels:
+        pod: stable-diffusion-api-6g2sx
+      name: stable-diffusion-api-6g2sx
+    - labels:
+        pod: stable-diffusion-api-c28bf
+      name: stable-diffusion-api-c28bf
+    - labels:
+        pod: stable-diffusion-api-dbvwb
+      name: stable-diffusion-api-dbvwb
+    - labels:
+        pod: stable-diffusion-api-dkphm
+      name: stable-diffusion-api-dkphm
+    - labels:
+        pod: stable-diffusion-api-dtwns
+      name: stable-diffusion-api-dtwns
+    - labels:
+        pod: stable-diffusion-api-fz6lf
+      name: stable-diffusion-api-fz6lf
+    - labels:
+        pod: stable-diffusion-api-gjlbh
+      name: stable-diffusion-api-gjlbh
+    - labels:
+        pod: stable-diffusion-api-htx7m
+      name: stable-diffusion-api-htx7m
+    - labels:
+        pod: stable-diffusion-api-mvq5h
+      name: stable-diffusion-api-mvq5h
+    - labels:
+        pod: stable-diffusion-api-nhsf5
+      name: stable-diffusion-api-nhsf5
+    - labels:
+        pod: stable-diffusion-api-pgpkh
+      name: stable-diffusion-api-pgpkh
+    - labels:
+        pod: stable-diffusion-api-qk4vd
+      name: stable-diffusion-api-qk4vd
+    - labels:
+        pod: stable-diffusion-api-rbrfg
+      name: stable-diffusion-api-rbrfg
+    - labels:
+        pod: stable-diffusion-api-s68pn
+      name: stable-diffusion-api-s68pn
+    - labels:
+        pod: stable-diffusion-api-tnl7j
+      name: stable-diffusion-api-tnl7j
+    - labels:
+        pod: stable-diffusion-api-w86rf
+      name: stable-diffusion-api-w86rf
+    - labels:
+        pod: stable-diffusion-api-wnd7p
+      name: stable-diffusion-api-wnd7p
+    - labels:
+        pod: stable-diffusion-api-wx5gr
+      name: stable-diffusion-api-wx5gr

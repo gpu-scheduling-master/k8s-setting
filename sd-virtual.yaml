@@ -1,0 +1,144 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: stable-diffusion
+    service: stable-diffusion
+  name: sd-service
+  namespace: intern
+spec:
+  ports:
+    - name: http
+      port: 8000
+  selector:
+    app: stable-diffusion
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: sd-api-virtual
+  namespace: intern
+spec:
+  gateways:
+    - intern/sd-gateway
+  hosts:
+    - "*"
+  http:
+    - match:
+        - uri:
+            exact: /gen-img
+      route:
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-5xngw
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-6g2sx
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-c28bf
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-dbvwb
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-dkphm
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-dtwns
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-fz6lf
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-gjlbh
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-htx7m
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-mvq5h
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-nhsf5
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-pgpkh
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-qk4vd
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-rbrfg
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-s68pn
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-tnl7j
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-w86rf
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-wnd7p
+          weight: 5
+        - destination:
+            host: sd-service
+            port:
+              number: 8000
+            subset: stable-diffusion-api-wx5gr
+          weight: 5

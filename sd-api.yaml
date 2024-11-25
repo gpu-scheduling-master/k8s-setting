@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: stable-diffusion-api
+  namespace: intern
+  labels:
+    app: stable-diffusion
+spec:
+  selector:
+    matchLabels:
+      app: stable-diffusion
+  template:
+    metadata:
+      labels:
+        app: stable-diffusion
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/kiss
+                    operator: In
+                    values:
+                      - Desktop
+      containers:
+        - name: stable-diffusion-api
+          image: docker.io/reelect/sd-api:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              nvidia.com/gpu: 1 # 각 노드당 1개의 GPU를 요청
+            requests:
+              cpu: 500m
+              memory: 2Gi
+          env:
+            - name: SD_MODEL
+              value: "/models/stable-diffusion-v1-4"
+          ports:
+            - containerPort: 8000
